@@ -1,0 +1,137 @@
+package ftest;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.Range;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+
+class FTestKernel extends Kernel {
+
+  DFEType TYPE = dfeFloat(8, 24);
+  int LOOP_LENGHT = 15;
+  int MAXIT = 100;
+  DFEVar EPS = constant.var(3.0e-7);
+  DFEVar FPMIN = constant.var(1.0e-30);
+
+  FTestKernel(KernelParameters parameters) {
+    super(parameters);
+
+    DFEVar count = control.count.simpleCounter(32);
+
+    DFEVar data1 = io.input("data1", TYPE);
+    DFEVar data2 = io.input("data2", TYPE);
+
+    DFEVar var1 = variance(data1, count);
+    DFEVar var2 = variance(data2, count);
+
+    DFEVar f = (var1 > var2) ? var1 / var2 : var2 / var1;
+    DFEVar df = (count - 1).cast(TYPE);
+    DFEVar prob = 2.0 * betai(0.5 * df, 0.5 * df, df / (df + df * f));
+    prob = (prob > 1.0) ? 2.0 - prob : prob;
+
+    io.output("f", f, TYPE);
+    io.output("prob", prob, TYPE);
+  }
+
+  DFEVar variance(DFEVar x, DFEVar count) {
+    DFEVar sum = accumulate(x, count);
+    DFEVar squaredSum = accumulate(x * x, count);
+    DFEVar mean = sum / (count.cast(TYPE) + 1);
+    return (squaredSum - mean * sum) / count.cast(TYPE);
+  }
+
+  DFEVar accumulate(DFEVar x, DFEVar count) {
+    DFEVar subSum = constant.var(TYPE, 0.0);
+    for (int i = 0; i < LOOP_LENGHT; i++) {
+      subSum = subSum + stream.offset(x, -i);
+    }
+
+    DFEVar carriedSum = TYPE.newInstance(this);
+    DFEVar temp = (count < LOOP_LENGHT) ? 0.0 : carriedSum;
+    DFEVar sum = subSum + temp;
+    carriedSum <== stream.offset(sum, -LOOP_LENGHT);
+
+    return sum;
+  }
+
+  DFEVar betacf(DFEVar a, DFEVar b, DFEVar x) {
+    DFEVar qab = a + b; //These q’s will be used in factors that occur in the coefficients
+    DFEVar qap = a + 1.0;
+    DFEVar qam = a - 1.0;
+
+    DFEVar c = constant.var(1.0); // First step of Lentz’s method.
+
+    DFEVar d = 1.0 - qab * x / qap;
+    d = (KernelMath.abs(d) < FPMIN) ? FPMIN : d;
+    d = 1.0 / d;
+
+    DFEVar h = d;
+    DFEVar del = (EPS + 1).cast(TYPE);
+
+    for (int m = 1; m <= MAXIT; m++) {
+      int m2 = 2 * m;
+
+      DFEVar tmp1 = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1.0 + tmp1 * d; // One step (the even one) of the recurrence.
+      d = (KernelMath.abs(d) < FPMIN) ? FPMIN : d;
+      d = 1.0 / d;
+
+      c = 1.0 + tmp1 / c;
+      c = (KernelMath.abs(c) < FPMIN) ? FPMIN : c;
+
+      h *= d * c;
+
+      DFEVar tmp2 = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1.0 + tmp2 * d;  // Next step of the recurrence (the odd one).
+      d = (KernelMath.abs(d) < FPMIN) ? FPMIN : d;
+      d = 1.0 / d;
+
+      c = 1.0 + tmp2 / c;
+      c =  (KernelMath.abs(c) < FPMIN) ? FPMIN : c;
+
+      del = (KernelMath.abs(del - 1.0) < EPS) ? del : d * c;
+      h = (KernelMath.abs(del - 1.0) < EPS) ? h : h * del;
+    }
+
+    return h;
+  }
+
+  // Returns the value ln[Γ(xx)] for xx > 0.
+  DFEVar gammln(DFEVar xx) {
+    // Internal arithmetic will be done in double precision, a nicety that you can omit if five-figure accuracy is good enough.
+
+    double[] cof = {
+        76.18009172947146, -86.50532032941677,
+        24.01409824083091, -1.231739572450155,
+        0.1208650973866179e-2, -0.5395239384953e-5
+    };
+
+    DFEVar x = xx;
+    DFEVar y = xx;
+
+    DFEVar tmp = x + 5.5;
+    tmp -= (x + 0.5) * KernelMath.log(new Range(6, 2000), tmp, TYPE);
+
+    DFEVar ser = constant.var(1.000000000190015);
+    for (int j = 0; j <= 5; j++) {
+      y += 1;
+      ser += cof[j] / y;
+    }
+
+    return -tmp + KernelMath.log(new Range(0, 10000), 2.5066282746310005 * ser / x, TYPE);
+  }
+
+  // Returns the incomplete beta function Ix(a, b).
+  DFEVar betai(DFEVar a, DFEVar b, DFEVar x) {
+    DFEVar bt = KernelMath.exp(
+      gammln(a + b) - gammln(a) - gammln(b) +
+      a * KernelMath.log(new Range(0, 1), x, TYPE) +
+      b * KernelMath.log(new Range(0, 1), 1.0 - x, TYPE));
+
+    return (x < (a + 1.0) / (a + b + 2.0)) ?
+        bt * betacf(a, b, x) / a :
+        1.0 - bt * betacf(b, a, 1.0 - x) / b;
+  }
+}
