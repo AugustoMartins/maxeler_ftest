@@ -1,0 +1,178 @@
+cat: /opt/quartus/licenses/Altera_1G_10G_MAC_maxtest09.dat: No such file or directory
+RTNETLINK answers: Operation not permitted
+SIOCSIFHWADDR: Operation not permitted
+RTNETLINK answers: Operation not permitted
+Usage:
+  ifconfig [-a] [-v] [-s] <interface> [[<AF>] <address>]
+  [add <address>[/<prefixlen>]]
+  [del <address>[/<prefixlen>]]
+  [[-]broadcast [<address>]]  [[-]pointopoint [<address>]]
+  [netmask <address>]  [dstaddr <address>]  [tunnel <address>]
+  [outfill <NN>] [keepalive <NN>]
+  [hw <HW> <address>]  [metric <NN>]  [mtu <NN>]
+  [[-]trailers]  [[-]arp]  [[-]allmulti]
+  [multicast]  [[-]promisc]
+  [mem_start <NN>]  [io_addr <NN>]  [irq <NN>]  [media <type>]
+  [txqueuelen <NN>]
+  [[-]dynamic]
+  [up|down] ...
+
+  <HW>=Hardware Type.
+  List of possible hardware types:
+    loop (Local Loopback) slip (Serial Line IP) cslip (VJ Serial Line IP) 
+    slip6 (6-bit Serial Line IP) cslip6 (VJ 6-bit Serial Line IP) adaptive (Adaptive Serial Line IP) 
+    strip (Metricom Starmode IP) ash (Ash) ether (Ethernet) 
+    tr (16/4 Mbps Token Ring) tr (16/4 Mbps Token Ring (New)) ax25 (AMPR AX.25) 
+    netrom (AMPR NET/ROM) rose (AMPR ROSE) tunnel (IPIP Tunnel) 
+    ppp (Point-to-Point Protocol) hdlc ((Cisco)-HDLC) lapb (LAPB) 
+    arcnet (ARCnet) dlci (Frame Relay DLCI) frad (Frame Relay Access Device) 
+    sit (IPv6-in-IPv4) fddi (Fiber Distributed Data Interface) hippi (HIPPI) 
+    irda (IrLAP) ec (Econet) x25 (generic X.25) 
+    infiniband (InfiniBand) 
+  <AF>=Address family. Default: inet
+  List of possible address families:
+    unix (UNIX Domain) inet (DARPA Internet) inet6 (IPv6) 
+    ax25 (AMPR AX.25) netrom (AMPR NET/ROM) rose (AMPR ROSE) 
+    ipx (Novell IPX) ddp (Appletalk DDP) ec (Econet) 
+    ash (Ash) x25 (CCITT X.25) 
+make: Entering directory `/home/a01656520/WebIDE-Projects/Rom/CPUCode'
+make -C ../RunRules/Simulation maxfiles/FTest.max
+make[1]: Entering directory `/home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation'
+
+MaxCompiler Project Admin Tool Version 2015.2.00001
+ Copyright Maxeler Technologies 2010 - 2015. All rights reserved.
+
+Handler version 2
+Updating RunRule dependent Makefiles for RunRule 'Simulation'
+	Updating: Simulation
+Found makefiles: 1
+	Updated: Simulation
+make -f Makefile.rules maxfiles/FTest.max
+make[2]: Entering directory `/home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation'
+env  MAX_BUILDPARAMS=" DFEModel=MAIA  target=DFE_SIM  maxFileName=FTest "  ant -v -f FTest.xml
+Apache Ant version 1.7.1 compiled on August 24 2010
+Buildfile: FTest.xml
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+parsing buildfile /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/FTest.xml with URI = file:/home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/FTest.xml
+Project base dir set to: /home/a01656520/WebIDE-Projects/Rom/EngineCode
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+Build sequence for target(s) `all' is [build, run, runresult, all]
+Complete build sequence is [build, run, runresult, all, help, clean, jar, ]
+
+build:
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+      [ant] calling target(s) [default] in build file /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/FTest_Build.xml
+parsing buildfile /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/FTest_Build.xml with URI = file:/home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/FTest_Build.xml
+Project base dir set to: /home/a01656520/WebIDE-Projects/Rom/EngineCode
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+      [ant] Entering /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/FTest_Build.xml...
+Build sequence for target(s) `all' is [clean, build, all]
+Complete build sequence is [clean, build, all, ]
+
+clean:
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist
+   [delete] Deleting /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin/ftest/FTestKernel.class
+   [delete] Deleting /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin/ftest/FTestManager.class
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin/ftest
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist
+
+build:
+    [mkdir] Created dir: /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist
+    [mkdir] Created dir: /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin
+     [copy] No sources found.
+[maxjcompiler] 
+[maxjcompiler] 
+[maxjcompiler] Compiling to folder /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin
+[maxjcompiler] 
+[maxjcompiler] Compiling files and folders:
+[maxjcompiler] /home/a01656520/WebIDE-Projects/Rom/EngineCode/src
+[maxjcompiler] 
+[maxjcompiler] Compiler options:
+[maxjcompiler] -noExit
+[maxjcompiler] -classpath
+[maxjcompiler] /opt/maxcompiler/lib/MaxCompiler.jar
+[maxjcompiler] -d
+[maxjcompiler] /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin
+
+all:
+      [ant] Exiting /home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/FTest_Build.xml.
+
+run:
+     [java] Executing '/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre/bin/java' with arguments:
+     [java] '-Xmx2048m'
+     [java] '-classpath'
+     [java] '/home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation/dist/bin:/opt/maxcompiler/lib/MaxCompiler.jar'
+     [java] 'ftest.FTestManager'
+     [java] 
+     [java] The ' characters around the executable and arguments are
+     [java] not part of the command.
+     [java] Setting environment variable: MAXSOURCEDIRS=src
+     [java] Mon 23:02: MaxCompiler version: 2015.2
+     [java] Mon 23:02: Build "FTest" start time: Mon May 14 23:02:33 UTC 2018
+     [java] Mon 23:02: Main build process running as user a01656520 on host b09db9a8e2da
+     [java] Mon 23:02: Build location: /tmp/FTest_MAIA_DFE_SIM
+     [java] Mon 23:02: Detailed build log available in "_build.log"
+     [java] Mon 23:02: Instantiating manager
+     [java] Mon 23:02: Instantiating kernel "FTestKernel"
+     [java] Mon 23:02: Compiling manager (CPU I/O Only)
+     [java] Mon 23:02: 
+     [java] Mon 23:02: Compiling kernel "FTestKernel"
+     [java] Mon 23:02: WARNING: Warning (MULTIPLY_ADD_EXTRACTION):
+     [java] Mon 23:02: WARNING: MaxCompiler has detected and optimized one or more multiply add trees. These
+     [java] Mon 23:02: WARNING: optimizations reduce the amount of rounding that takes place. This will improve
+     [java] Mon 23:02: WARNING: precision but may mean that the output of this bitstream is not bit-identical
+     [java] Mon 23:02: WARNING: to that of a similar bitstream.
+     [java] Mon 23:03: WARNING: Warning (CONSTANT_ENCODING):
+     [java] Mon 23:03: WARNING: Precision loss occurred in some constant values.
+     [java] Mon 23:03: WARNING: For details see /tmp/FTest_MAIA_DFE_SIM/scratch/FTestKernel_constants_report.txt
+     [java] Mon 23:03: Running back-end simulation build (3 phases)
+     [java] Mon 23:03: (1/3) - Prepare MaxFile Data (GenerateMaxFileDataFile)
+     [java] Mon 23:03: (2/3) - Compile Simulation Modules (SimCompilePass)
+     [java] Mon 23:04: (3/3) - Generate MaxFile (AddSimObjectToMaxFilePass)
+     [java] Mon 23:04: MaxFile: /tmp/FTest_MAIA_DFE_SIM/results/FTest.max (MD5Sum: 4d933b9610777ed8e200c7ae3828d466)
+     [java] Mon 23:04: Build completed: Mon May 14 23:04:42 UTC 2018 (took 2 mins, 9 secs)
+     [exec] Current OS is Linux
+     [exec] Executing '/opt/maxcompiler//lib/MaxIDE/copyBuildResults.sh' with arguments:
+     [exec] '-p'
+     [exec] 'Simulation'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+
+runresult:
+     [echo] Checking java run result: exit status = 0
+
+all:
+
+BUILD SUCCESSFUL
+Total time: 2 minutes 11 seconds
+make[2]: Leaving directory `/home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation'
+make[1]: Leaving directory `/home/a01656520/WebIDE-Projects/Rom/RunRules/Simulation'
+make -f Makefile.rules build
+make[1]: Entering directory `/home/a01656520/WebIDE-Projects/Rom/CPUCode'
+set -e; rm -f ../RunRules/Simulation/objects/c/FTestCpuCode.d ;                                                             \
+	  cc -M -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxcompiler//include/slic'  -Wno-error FTestCpuCode.c > ../RunRules/Simulation/objects/c/FTestCpuCode.d.$$ ;                                 \
+      sed 's,\(FTestCpuCode\)\.o[ :]*,../RunRules/Simulation/objects/c/\1.o ../RunRules/Simulation/objects/c/FTestCpuCode.d : ,g' < ../RunRules/Simulation/objects/c/FTestCpuCode.d.$$ > ../RunRules/Simulation/objects/c/FTestCpuCode.d; \
+      rm -f ../RunRules/Simulation/objects/c/FTestCpuCode.d.$$
+make[1]: Leaving directory `/home/a01656520/WebIDE-Projects/Rom/CPUCode'
+make[1]: Entering directory `/home/a01656520/WebIDE-Projects/Rom/CPUCode'
+"/opt/maxcompiler//bin/sliccompile" ../RunRules/Simulation/maxfiles/FTest.max ../RunRules/Simulation/objects/maxfiles/slic_FTest.o
+Processing maxfile for MAIA_SIM from '../RunRules/Simulation/maxfiles/FTest.max'.
+/opt/maxcompiler//lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /opt/maxcompiler/include/slic -DMAXFILE_INC="/dev/null" -DSLIC_NO_DESTRUCTORS -c /tmp/sliccompile_8939687835168547223/cobject/max_4718308220204451231.c -o /tmp/sliccompile_8939687835168547223/cobject/max_4718308220204451231.c.o 
+/opt/maxcompiler//lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /opt/maxcompiler/include/slic -DMAXFILE_INC="/home/a01656520/WebIDE-Projects/Rom/CPUCode/../RunRules/Simulation/maxfiles/FTest.max" -DSLIC_NO_DESTRUCTORS -c /opt/maxcompiler/src/slicinterface/MaxFileInit.c -o max_3939419116073065342.o 
+ld -r /tmp/sliccompile_8939687835168547223/cobject/max_4718308220204451231.c.o max_3939419116073065342.o -o slic_FTest.o 
+Copying .max file C object into '/home/a01656520/WebIDE-Projects/Rom/CPUCode/../RunRules/Simulation/objects/maxfiles'
+cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxcompiler//include/slic'  -c FTestCpuCode.c -o ../RunRules/Simulation/objects/c/FTestCpuCode.o
+cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxcompiler//include/slic'  -o ../RunRules/Simulation/binaries/FTest ../RunRules/Simulation/objects/maxfiles/slic_FTest.o ../RunRules/Simulation/objects/c/FTestCpuCode.o -g -O3  -L '/opt/maxcompiler//lib' -lslic -L '/opt/maxcompiler//lib/maxeleros-sim/lib' -lmaxeleros -lpthread -lm -lrt 
+make[1]: Leaving directory `/home/a01656520/WebIDE-Projects/Rom/CPUCode'
+make: Leaving directory `/home/a01656520/WebIDE-Projects/Rom/CPUCode'
+Starting generating graphs...
+Graphs generated
